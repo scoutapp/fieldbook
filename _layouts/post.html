@@ -26,10 +26,16 @@ layout: default
   });
 
   function fixToc() {
-    var $header = $(".site-header");
+    var $header = $("header");
     var $nav = $("#toc");
+    var $footer = $("footer");
     $(window).scroll(function() {
-      if ($('body').height() > 1000 && ($('body').height() - $(window).height() > 200) && $(window).scrollTop() >= $header.height()) {
+      if (
+        $('body').height() > 1000 &&
+        ($('body').height() - $(window).height() > 200) &&
+        $(window).scrollTop() >= $header.height() &&
+        $footer.height() + $nav.height() < $(window).height() // otherwise toc overlaps the footer
+      ) {
         $nav.addClass('fixed')
      } else if ($(window).scrollTop() < 100) {
        $nav.removeClass('fixed');
