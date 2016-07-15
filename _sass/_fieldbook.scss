@@ -1,6 +1,8 @@
 /**
- * Styles specific to this field guide.
+ * Styles specific to this fieldbook.
  */
+
+ $header-height: 170px;
 
  h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', san-serif;
@@ -10,6 +12,53 @@
 
  h5 {
   font-size: 16px;
+ }
+
+ .site-nav {
+  line-height: initial;
+ }
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  .page-content {
+    padding-bottom: $header-height;
+  }
+}
+
+ .site-footer {
+  box-sizing: border-box;
+  width: 100%;
+  height: $header-height;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #333;
+  h2.footer-heading {
+    color: #ccc;
+    a {
+      color: #ccc;
+    }
+  }
+  .footer-col-wrapper { 
+    color: #ccc;
+    a {
+      color: #fff;
+    }
+  }
+ }
+
+ #header_logo {
+  display: inline-block;
+  margin-top: 15px;
+  display: block;
+  img {
+    height: 22px;
+  }
  }
 
 .wrapper { 
@@ -64,6 +113,29 @@
     h4 {
       margin-top: 30px;
     }
+  }
+}
+
+/****** home *******/
+
+#home {
+  .wrapper {
+    width: 600px;
+  }
+  #cover-header {
+    margin-top: 30px;
+  }
+  .post-list {
+    li {
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+  }
+  #cover-logo {
+    width: 80px;
+    display: block;
+    margin: 60px auto 0 auto;
   }
 }
 

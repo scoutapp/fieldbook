@@ -2,6 +2,7 @@
 layout: post
 title:  "Debugging memory bloat"
 date:   2016-06-28 11:19:42 -0600
+chapter: 2
 ---
 
 Rails memory issues are frequently more difficult - and more urgent - to resolve than performance problems: a slow Rails app may be painful, but if your app chews through all available memory on a host, the app is down.
@@ -15,8 +16,6 @@ _Memory bloat_ is a sharp increase in memory usage due to the allocation of many
 Visually, here's the difference between bloat and a leak:
 
 ![bloat chart](/images/bloat_chart.png)
-
-__A sharp increase in memory usage can bring down an application quickly__. A leak, by definition, won't trigger this behavior. 
 
 While memory bloat can quickly cripple a site, it's actually easier to track down the root cause than a memory leak. __If your app is suffering from high memory usage, it's best to investigate memory bloat first given it's an easier problem to solve than a leak.__
 
@@ -51,7 +50,7 @@ If the y-axis was "response time" and you were optimizing CPU or database resour
 In order of importance:
 
 1. __Memory Usage is a high-water mark__: Your Rails app will likely recover quickly when it serves a slow request: a single slow request doesn't have a long-lasting impact. This _is not the case_ for memory-hungry requests: just one allocation-heavy request will have a long-lasting impact on your Rail's app's memory usage.
-2. __Memory bloat is frequently caused by power users__: controller-actions that work fine for most users will frequently buckle under the weight of power users. A single request that (a) renders the results of 1,000 ActiveRecord objects vs. 10, (2) processes a 10 MB image vs. a 500 KB image, or (3) handles a 1 MB payload vs. a 100 KB payload will trigger more allocations and have a long-term impact your app's memory usage.
+2. __Memory bloat is frequently caused by power users__: controller-actions that work fine for most users will frequently buckle under the weight of power users. A single request that renders the results of 1,000 ActiveRecord objects vs. 10 will trigger many allocations and have a long-term impact your app's memory usage.
 2. __Focus on the _maximum_ number of allocations per controller-action__: a normally lightweight action that triggers a large number of allocations on a single request will have a significant impact on memory usage. Note how this is very different than optimizing CPU or database resources across an app.
 3. __Allocations and memory increases aren't correlated on a long-running app__. Once your app's memory heap size has grown to accommodate a significant number of objects, a request that requires a large number of allocations won't necessarily trigger a memory increase. If the same request happened early in the Rails process' lifetime, it likely would trigger a memory increase.
 4. __You will see a number of memory increases when a Rails application is started__: Ruby loads libraries dynamically, so many libraries won't be loaded until requests are processed. It's important to filter out these requests from your analysis.
@@ -163,3 +162,7 @@ The majority of allocations occur unwrapping the file in the framework middlewar
 The workaround: send large files directly to a third party like S3. [See Heroku's docs on Direct to S3 Image Uploads in Rails](https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails).
 
 ### Suggested Reading
+
+* [That's Not a Memory Leak, It's Bloat](https://blog.engineyard.com/2009/thats-not-a-memory-leak-its-bloat) - This digs into more specifics on common ActiveRecord patterns that contribute to bloat. While the post is from 2009, and as expected, some of the tools are outdated, the Ruby theories still apply.
+* [The Complete Guide to Rails Performance](https://www.railsspeed.com/) - This book (purchase required) has a chapter dedicated to memory bloat and leaks that digs deeper into the internals of Ruby memory usage. 
+* [How Ruby Uses Memory](https://www.sitepoint.com/ruby-uses-memory/) - This article takes a deeper into the internals of Ruby memory usage.

@@ -6,7 +6,7 @@
 
 
 // Our variables
-$base-font-family: Baskerville, "Times New Roman", serif;
+$base-font-family: 'Roboto Slab', "Times New Roman", serif;
 $base-font-size:   16px;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
@@ -21,7 +21,15 @@ $brand-color:      #2a7ae2;
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
+$orange: #f0592a;
+$red: #c54920;
+$yellow: #fbaf42;
+$lightgray: #e1ebf0;
+$gray: #e2ebf0;
+$darkgray: #373c41;
+$blue: #6b3281;
 $purple: #511d62;
+$green: #7aae37;
 $darkgreen: #64953f;
 
 $wrapper-width: 1024px; // full width of the page content
@@ -53,5 +61,5 @@ $on-laptop:        600px;
         "base",
         "layout",
         "syntax-highlighting",
-        "field_guide"
+        "fieldbook"
 ;

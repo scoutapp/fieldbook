@@ -2,13 +2,13 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title }}</h2>
+    <h2 class="footer-heading"><a href="/">{{ site.title }}</a></h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li>Omissions? Suggestions? Errors?</li>
+          <li><a href="https://github.com/scoutapp/fieldbook" target="_blank">Submit an issue or pull request</a>.</li>
         </ul>
       </div>
 
@@ -16,7 +16,7 @@
         <ul class="social-media-list">
           {% if site.github_username %}
           <li>
-            {% include icon-github.html username=site.github_username %}
+            {% include icon-github.html username=site.github_username repo=site.github_repo %}
           </li>
           {% endif %}
 
@@ -29,7 +29,11 @@
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
+        <!-- <p>{{ site.description }}</p> -->
+        <!-- easier to just put the raw text here than reload on every change to the _config file -->
+        <p>
+          This is our tattered, weather-worn Rails performance fieldbook. We're filling it with hard-earned lessons from the trail.
+        </p>
       </div>
     </div>
 

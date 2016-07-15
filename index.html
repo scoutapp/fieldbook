@@ -1,23 +1,52 @@
 ---
-layout: default
+layout: 
 ---
 
-<div class="home">
+<!DOCTYPE html>
+<html>
 
-  <h1 class="page-heading">Posts</h1>
+  {% include head.html %}
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <body id="home">
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="home">
 
-</div>
+
+          <img src="images/cover.png" alt="Rails Performance Fieldbook" />
+
+          <h1 id="cover-header">Rails Performance Fieldbook</h1>
+
+          <ul class="post-list">
+            <li>
+              <h2>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              </h2>
+            </li>
+            {% assign posts = site.posts | sort: 'chapter' %}
+            {% for post in posts %}
+              <li>
+                <h2>
+                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.chapter }}. {{ post.title }}</a>
+                </h2>
+                <span class="post-meta">Updated {{ post.date | date: "%b %-d, %Y" }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <p class="rss-subscribe">Subscribe to new chapters <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a> or email.</p>
+
+          <a id="cover-logo" href="https://scoutapp.com" target="_blank"><img src="images/scout.png" /></a>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+  </body>
+
+</html>
