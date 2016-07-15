@@ -5,6 +5,8 @@ date:   2016-06-28 11:19:42 -0600
 chapter: 2
 ---
 
+![memory bloat](images/bloat.png)<br/><br/>
+
 Rails memory issues are frequently more difficult - and more urgent - to resolve than performance problems: a slow Rails app may be painful, but if your app chews through all available memory on a host, the app is down.
 
 This chapter shows how to identify memory-hungry controller-actions and specific memory-hungry requests, provides a visual representation of common pitfalls, and suggestions on fixing memory bloat.
