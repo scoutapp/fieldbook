@@ -15,7 +15,14 @@ layout: default
     <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
   </header>
     {{ content }}
+
+    <h3 data-toc-skip>Subscribe for more</h3>
+    <p>
+      We're publishing chapters as we complete them. Enter your email address below to be notified of updates to the Rails Performance Fieldbook.
+    </p>
+    {% include mailchimp.html %}
   </div>
+
 
 </article>
 
@@ -23,6 +30,7 @@ layout: default
   $(function() {
     initToc();
     fixToc();
+    targetLinks();
   });
 
   function fixToc() {
@@ -53,5 +61,9 @@ layout: default
     $('body').scrollspy({
       target: navSelector
     });
+  }
+
+  function targetLinks() {
+    $(".post-content a[href^='http']").attr('target','_blank'); 
   }
 </script>

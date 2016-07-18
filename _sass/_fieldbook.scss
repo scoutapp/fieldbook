@@ -132,10 +132,27 @@ body {
       }
     }
   }
-  #cover-logo {
-    width: 80px;
-    display: block;
-    margin: 60px auto 0 auto;
+  #home_footer {
+    border-top: 1px solid #eaeaea;
+    padding-top: 40px;
+    text-align: center;
+    margin-top: 80px;
+    vertical-align: top;
+    #cover-logo {
+      vertical-align: top;
+      height: 28px;
+      display: inline-block;
+      img {
+        height: 28px;
+        margin-right: 20px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .rss-subscribe {
+    margin-top: 50px;
+    margin-bottom: 0;
   }
 }
 
@@ -144,4 +161,12 @@ body {
 .post-sidebar nav[data-toggle=toc] .nav>.active:focus>a, nav[data-toggle=toc] .nav>.active:hover>a, nav[data-toggle=toc] .nav>.active>a {
       display: block;
     padding: 4px 20px;
+}
+
+/**** mailchimp form ****/
+
+body #mc_embed_signup {
+  form {
+    text-align: left;
+  }
 }
