@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Debugging memory bloat"
-date:   2016-06-28 11:19:42 -0600
+date:   2016-07-18 11:19:42 -0600
 chapter: 2
 ---
 
