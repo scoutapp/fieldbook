@@ -13,7 +13,7 @@ This chapter shows how to identify memory-hungry controller-actions and specific
 
 ### Memory bloat vs. memory leak
 
-_Memory bloat_ is a sharp increase in memory usage due to the allocation of many objects. It's a more time-sensitive problem than a _memory leak_, which is a slow increase in memory usage and can be mitigated via scheduled restarts. 
+_Memory bloat_ is a sharp increase in memory usage due to the allocation of many objects. It's a more time-sensitive problem than a _memory leak_, which is a slow, continued increase in memory usage and can be mitigated via scheduled restarts. 
 
 Visually, here's the difference between bloat and a leak:
 
@@ -45,17 +45,17 @@ Analysis:
 * Endpoint A averages more allocations per-request
 * Endpoint A allocates far more objects, in total, over the time period
 
-If the y-axis was "response time" and you were optimizing CPU or database resources, you'd very likely start optimizing Endpoint A first. However, since we're optimizing memory, __look for the Endpoint that with the single request that triggers the most allocations__. In this case, __Endpoint B has the greatest impact on memory usage__.
+If the y-axis was "response time" and you were optimizing CPU or database resources, you'd very likely start optimizing Endpoint A first. However, since we're optimizing memory, __look for the Endpoint with the single request that triggers the most allocations__. In this case, __Endpoint B has the greatest impact on memory usage__.
 
 ### What you need to know about memory bloat
 
 In order of importance:
 
 1. __Memory Usage is a high-water mark__: Your Rails app will likely recover quickly when it serves a slow request: a single slow request doesn't have a long-lasting impact. This _is not the case_ for memory-hungry requests: just one allocation-heavy request will have a long-lasting impact on your Rail's app's memory usage.
-2. __Memory bloat is frequently caused by power users__: controller-actions that work fine for most users will frequently buckle under the weight of power users. A single request that renders the results of 1,000 ActiveRecord objects vs. 10 will trigger many allocations and have a long-term impact your app's memory usage.
+2. __Memory bloat is frequently caused by power users__: controller-actions that work fine for most users will frequently buckle under the weight of power users. A single request that renders the results of 1,000 ActiveRecord objects vs. 10 will trigger many allocations and have a long-term impact on your app's memory usage.
 2. __Focus on the _maximum_ number of allocations per controller-action__: a normally lightweight action that triggers a large number of allocations on a single request will have a significant impact on memory usage. Note how this is very different than optimizing CPU or database resources across an app.
 3. __Allocations and memory increases aren't correlated on a long-running app__. Once your app's memory heap size has grown to accommodate a significant number of objects, a request that requires a large number of allocations won't necessarily trigger a memory increase. If the same request happened early in the Rails process' lifetime, it likely would trigger a memory increase.
-4. __You will see a number of memory increases when a Rails application is started__: Ruby loads libraries dynamically, so many libraries won't be loaded until requests are processed. It's important to filter out these requests from your analysis.
+4. __You will see a number of memory increases when a Rails application is started__: Ruby loads libraries dynamically, so some libraries won't be loaded until requests are processed. It's important to filter out these requests from your analysis.
 
 ### Using Scout to fix memory bloat
 
@@ -71,7 +71,7 @@ If you're looking for a general understanding of which controller-actions are re
 
 ![endpoints](/images/endpoints.png)
 
-Sort by the "% Allocations" column. This column represents the maximum number of allocations recorded for any single request for the given controller-action and timeframe. Why max and not mean allocations? See [this section](#which-endpoint-impacts-memory-usage-more) section above.
+Sort by the "% Allocations" column. This column represents the maximum number of allocations recorded for any single request for the given controller-action and timeframe. Why max and not mean allocations? See [this section](#which-endpoint-impacts-memory-usage-more) above.
 
 Click on an endpoint to dive into the Endpoint Detail view. From here, you can click the "Allocations - Max" chart panel to view allocations over time.
 
@@ -144,7 +144,7 @@ Identifying this scenario is more involved: __if a large column isn't accessed, 
 
 ![large col](images/large_column.png)
 
-It's also likely the query may run slower as more data is read from the database and sent across the wire from the database to your app host: look for a slow query in the "Time Breakdown" section of the trace.
+It's also likely the query may run slower as more data is read from the database and sent across the wire to your app host: look for a slow query in the "Time Breakdown" section of the trace.
 
 ##### The fix
 
