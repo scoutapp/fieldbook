@@ -32,6 +32,7 @@ layout: default
     initToc();
     fixToc();
     targetLinks();
+    anchorLinks();
   });
 
   function fixToc() {
@@ -66,5 +67,10 @@ layout: default
 
   function targetLinks() {
     $(".post-content a[href^='http']").attr('target','_blank'); 
+  }
+
+  function anchorLinks() {
+    anchors.options.placement = 'left';
+    anchors.add('.post-content > h2, .post-content > h3, .post-content > h4, .post-content > h5, .post-content > h6');
   }
 </script>
