@@ -68,41 +68,44 @@ body {
 .wrapper { 
   .post-sidebar {
     font-family: 'Roboto', san-serif;
-    #toc {
-      > ul {
-        margin-left: 0;
-      }
-      h4 {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 15px;
-      }
-      &.fixed {
-        position: fixed;
-        top: 20px;
-      }
-      font-size: 13px;
-      width: $sidebar-width;
+  }
+
+  #toc {
+    position: fixed;
+    top: 60px;
+    > ul {
+      margin-left: 0;
+    }
+    h4 {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 15px;
+    }
+    &.scroll {
+      position: fixed;
+      top: 0px;
+    }
+    font-size: 13px;
+    width: $sidebar-width;
+    list-style-type: none;
+    li {
       list-style-type: none;
-      li {
-        list-style-type: none;
-        margin: 4px 0;
-        /*font-weight: bold;*/
-        border: 1px solid #e7e7e7;
-        border-width: 1px 0 0 0;
-      }
-      a {
-        color: gray;
-        padding: 4px 20px;
-        display: block;
-        margin: 10px 0;
-      }
-      .active {
-        > a {
-          color: $purple;
-          border-left: 2px solid #563d7c;
-          font-weight: bold;
-        }
+      margin: 4px 0;
+      /*font-weight: bold;*/
+      border: 1px solid #e7e7e7;
+      border-width: 1px 0 0 0;
+    }
+    a {
+      color: gray;
+      padding: 4px 20px;
+      display: block;
+      margin: 10px 0;
+    }
+    .active {
+      > a {
+        color: $purple;
+        border-left: 2px solid #563d7c;
+        font-weight: bold;
       }
     }
   }
@@ -139,11 +142,15 @@ body {
       }
     }
   }
+  .page-content {
+    padding-bottom: 0;
+  }
   #home_footer {
     border-top: 1px solid #eaeaea;
     padding-top: 40px;
+    padding-bottom: 40px;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 30px;
     vertical-align: top;
     #cover-logo {
       vertical-align: top;
@@ -163,17 +170,115 @@ body {
   }
 }
 
-/**** toc overrides ****/
-
-.post-sidebar nav[data-toggle=toc] .nav>.active:focus>a, nav[data-toggle=toc] .nav>.active:hover>a, nav[data-toggle=toc] .nav>.active>a {
-      display: block;
-    padding: 4px 20px;
-}
-
 /**** mailchimp form ****/
 
 body #mc_embed_signup {
+  box-sizing: border-box;
+  width: 100%;
   form {
     text-align: left;
   }
+}
+
+/** toc overrides **/
+
+.wrapper #toc .nav > li:not(.active) > a:hover,
+.wrapper #toc .nav > li:not(.active) > a:focus {
+  border-left: none; /* stop annoying shifting */
+  color: $purple;
+}
+
+/*** media queries ***/
+
+@media only screen and (max-width: 1020px) {
+  .wrapper {
+    .post-sidebar {
+      width: 100%;
+      float: none;
+    }
+    #toc {
+      position: static;
+      &.scroll {
+        position: static;
+      }
+      a {
+        padding: 4px 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  body#home {
+    .wrapper {
+      width: 100%;
+      .home {
+        width: 90%;
+        img {
+          max-width: 100%;
+        }
+        #cover-header {
+          font-size: 22px;
+        }
+        .post-link {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  body {
+    width: 100%;
+    min-width: inherit;
+    .site-nav {
+      display: none;
+    }
+    .site-title {
+      font-size: 20px;
+    }
+    .page-content {
+      padding-bottom: 0;
+    }
+    .site-footer {
+      height: auto;
+      position: static;
+    }
+
+    .wrapper {
+      .post-sidebar {
+        width: 100%;
+        float: none;
+      }
+      #toc {
+        position: static;
+        &.scroll {
+          position: static;
+        }
+        a {
+          padding: 4px 0;
+        }
+      }
+      .post-content {
+        width: 100%;
+        float: none;
+      }
+    }
+  }
+
+  /* override the Affix plugin so that the navigation isn't sticky */
+  nav.affix[data-toggle='toc'] {
+    position: static;
+  }
+
+  /* PICK ONE */
+  /* don't expand nested items, which pushes down the rest of the page when navigating */
+  nav[data-toggle='toc'] .nav .active .nav {
+    display: none;
+  }
+  /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
+/*  nav[data-toggle='toc'] .nav .nav {
+    display: block;
+  }*/
+
 }
