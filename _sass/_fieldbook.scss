@@ -198,6 +198,7 @@ body #mc_embed_signup {
     }
     #toc {
       position: static;
+      width: auto;
       &.scroll {
         position: static;
       }
@@ -212,9 +213,9 @@ body #mc_embed_signup {
 
   body#home {
     .wrapper {
-      width: 100%;
+      width: auto;
       .home {
-        width: 90%;
+        width: auto;
         img {
           max-width: 100%;
         }
