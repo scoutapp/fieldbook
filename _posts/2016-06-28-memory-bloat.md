@@ -3,6 +3,7 @@ layout: post
 title:  "Debugging memory bloat"
 date:   2016-07-18 11:19:42 -0600
 chapter: 2
+excerpt: "Rails memory issues are frequently more difficult - and more urgent - to resolve than performance problems. This chapter shows how to identify and resolve memory bloat."
 ---
 
 ![memory bloat](images/bloat.png)<br/><br/>
