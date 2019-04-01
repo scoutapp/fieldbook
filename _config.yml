@@ -7,7 +7,7 @@
 
 # Site settings
 title: Rails Performance Fieldbook
-email: support@scoutapp.com
+email: support@scoutapm.com
 description: > # this means to ignore newlines until "baseurl:"
   This is our tattered, weather-worn Rails performance fieldbook. From memory bloat to database optimizations, we're filling it with hard-earned lessons scaling apps.
 baseurl: "" # the subpath of your site, e.g. /blog

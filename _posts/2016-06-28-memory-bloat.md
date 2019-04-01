@@ -60,7 +60,7 @@ In order of importance:
 
 ### Using Scout to fix memory bloat
 
-[Scout](https://scoutapp.com) can help you identify memory-hungry areas of your Rails app by:
+[Scout](https://scoutapm.com) can help you identify memory-hungry areas of your Rails app by:
 
 1. Isolating the controller-actions generating the greatest percentage of allocations.
 2. Viewing transactions traces of specific memory-hungry requests to isolate hotspots to specific areas of code.
@@ -92,7 +92,7 @@ Method calls displayed in the trace details are organized from most to least all
 
 #### Identifying users triggering memory bloat
 
-It's common for memory bloat to be isolated to a specific set of users. Use Scout's [context api](http://help.apm.scoutapp.com/#adding-custom-context) to associate your app's `current_user` with each transaction trace if it's not easily identify from a trace url.
+It's common for memory bloat to be isolated to a specific set of users. Use Scout's [context api](http://docs.scoutapm.com/#adding-custom-context) to associate your app's `current_user` with each transaction trace if it's not easily identify from a trace url.
 
 ![context](/images/context.png)
 
@@ -129,7 +129,7 @@ The example below illustrates an N+1 when rendering out a list of 100 users and 
 
 ![trace_intro](images/n+1.png)
 
-The steps to fixing N+1 queries are well-documented: the larger challenge is finding the worst offenders. [Scout can be used to identify the worst-offending N+1 queries](http://blog.scoutapp.com/articles/2016/04/28/stackprofin-to-n-1-query-detection) in your app.
+The steps to fixing N+1 queries are well-documented: the larger challenge is finding the worst offenders. [Scout can be used to identify the worst-offending N+1 queries](http://blog.scoutapm.com/articles/2016/04/28/stackprofin-to-n-1-query-detection) in your app.
 
 #### ActiveRecord: selecting unused large columns
 
