@@ -6,16 +6,24 @@ layout: default
 
 
   <div class="post-sidebar" itemprop="articleSidebar">
-    
-    <nav id="toc"><h4>Chapter Contents</h4></nav>
+    <!-- the toc will be positioned here -->
   </div>
 
   <div class="post-content" itemprop="articleBody">
-      <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-  </header>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+      <span class="post-meta">Updated {{ page.date | date: "%b %-d, %Y" }}</span>
+    </header>
+    <nav id="toc"><h4>Chapter Contents</h4></nav>
     {{ content }}
+
+    <h3 data-toc-skip>Subscribe for more</h3>
+    <p>
+      We're publishing chapters as we complete them. Enter your email address below to be notified of updates to the Rails Performance Fieldbook.
+    </p>
+    {% include mailchimp.html %}
   </div>
+
 
 </article>
 
@@ -23,23 +31,30 @@ layout: default
   $(function() {
     initToc();
     fixToc();
+    targetLinks();
+    anchorLinks();
   });
 
   function fixToc() {
-    var $header = $(".site-header");
+    var $header = $("header");
     var $nav = $("#toc");
+    var $footer = $("footer");
     $(window).scroll(function() {
-      if ($('body').height() > 1000 && ($('body').height() - $(window).height() > 200) && $(window).scrollTop() >= $header.height()) {
-        $nav.addClass('fixed')
-     } else if ($(window).scrollTop() < 100) {
-       $nav.removeClass('fixed');
-     }
-  }); // window.scroll
+      if ($(window).scrollTop() >= $header.height()) {
+        $nav.addClass('scroll')
+      } else if ($(window).scrollTop() < 100) {
+        $nav.removeClass('scroll');
+      }
+    }); // window.scroll
+    $(window).resize(function() {
+      positionToc();
+    });
   }
 
   function initToc() {
     var navSelector = '#toc';
     var $nav = $(navSelector);
+    positionToc();
     Toc.init({
       $nav: $nav, 
       $scope: $('.post-content')
@@ -47,5 +62,18 @@ layout: default
     $('body').scrollspy({
       target: navSelector
     });
+  }
+
+  function positionToc() {
+    $("#toc").css({left: $(".post-sidebar").offset().left});
+  }
+
+  function targetLinks() {
+    $(".post-content a[href^='http']").attr('target','_blank'); 
+  }
+
+  function anchorLinks() {
+    anchors.options.placement = 'left';
+    anchors.add('.post-content > h2, .post-content > h3, .post-content > h4, .post-content > h5, .post-content > h6');
   }
 </script>

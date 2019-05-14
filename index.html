@@ -1,23 +1,57 @@
 ---
-layout: default
+layout: 
 ---
 
-<div class="home">
+<!DOCTYPE html>
+<html>
 
-  <h1 class="page-heading">Posts</h1>
+  {% include head.html %}
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <body id="home">
+  {% include google_tag_manager_body.html %}
+    
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="home">
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+          <img src="images/cover.png" alt="Rails Performance Fieldbook" />
 
-</div>
+          <h1 id="cover-header">Rails Performance Fieldbook</h1>
+
+          <ul class="post-list">
+            <li>
+              <h2>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              </h2>
+            </li>
+            {% assign posts = site.posts | sort: 'chapter' %}
+            {% for post in posts %}
+              <li>
+                <h2>
+                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.chapter }}. {{ post.title }}</a>
+                </h2>
+                <span class="post-meta">Updated {{ post.date | date: "%b %-d, %Y" }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <p class="rss-subscribe">Subscribe to new chapters <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a> or email below.</p>
+
+          {% include mailchimp.html %}
+
+          <div id="home_footer">
+            <a id="cover-logo" href="https://scoutapm.com" target="_blank"><img src="images/scout.png" /></a>
+            <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/scoutapp/fieldbook" data-icon="octicon-eye" data-style="mega" data-count-href="/scoutapp/fieldbook/watchers" data-count-api="/repos/scoutapp/fieldbook#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch scoutapp/fieldbook on GitHub">Watch</a>
+          </div> <!-- home footer -->
+
+        </div>
+      </div>
+    </div>
+
+    
+
+  </body>
+
+</html>

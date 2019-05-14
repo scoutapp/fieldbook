@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 
   <!-- fonts -->
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
   <!-- bootstrap must be lower than version 3.0 -->
   <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <!-- TODO: replace w/local version after testing -->
-  <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.0/dist/bootstrap-toc.min.js"></script>
-  
+  <script src="{{ "/javascripts/bootstrap-toc.js" | prepend: site.baseurl }}"></script>
+  <link rel="stylesheet" href="{{ "/css/bootstrap-toc.css" | prepend: site.baseurl }}">
+  <script src="{{ "/javascripts/anchor.min.js" | prepend: site.baseurl }}"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  {% include google_tag_manager_head.html %}
+
+  <!-- must go last so it overrides any default styles -->
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 </head>
