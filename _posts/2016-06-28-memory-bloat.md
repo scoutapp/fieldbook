@@ -122,7 +122,7 @@ The example below illustrates an N+1 when rendering out a list of 100 users and 
 
 ![trace_intro](images/n+1.png)
 
-The steps to fixing N+1 queries are well-documented: the larger challenge is finding the worst offenders. [Scout can be used to identify the worst-offending N+1 queries](http://blog.scoutapp.com/articles/2016/04/28/stackprofin-to-n-1-query-detection) in your app.
+The steps to fixing N+1 queries are well-documented: the larger challenge is finding the worst offenders. [Scout can be used to identify the worst-offending N+1 queries](https://scoutapm.com/blog/stackprofin-to-n-1-query-detection) in your app.
 
 #### ActiveRecord: selecting unused large columns
 
