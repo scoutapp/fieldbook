@@ -19,3 +19,6 @@ github_repo: fieldbook
 # Build settings
 markdown: kramdown
 permalink: none
+
+gems:
+  - jekyll-target-blank
